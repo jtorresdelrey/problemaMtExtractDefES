@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Completa Multiterm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .code-box { font-family: 'Consolas', 'Monaco', monospace; }
+        /* Clase para la flecha SVG */
+        .arrow-connector {
+            stroke-dasharray: 10;
+            animation: dash 30s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8 flex justify-center items-center min-h-screen">
+
+    <!-- Contenedor Principal (Relative para posicionar el SVG encima) -->
+    <div id="main-container" class="max-w-4xl w-full bg-white shadow-2xl rounded-xl overflow-hidden border border-slate-200 relative">
+        
+        <!-- CAPA SVG PARA LA FLECHA (Z-INDEX ALTO) -->
+        <svg id="svg-layer" class="absolute top-0 left-0 w-full h-full pointer-events-none z-50 overflow-visible hidden md:block">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#0f766e" />
+                </marker>
+            </defs>
+            <!-- La línea se dibujará vía JS -->
+            <path id="connection-line" class="arrow-connector" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#arrowhead)" opacity="0.6" />
+            
+            <!-- Etiqueta flotante en la flecha -->
+            <g id="arrow-label" style="display:none">
+                <rect x="-60" y="-15" width="120" height="30" rx="15" fill="white" stroke="#0d9488" stroke-width="2"/>
+                <text x="0" y="5" text-anchor="middle" font-family="Roboto" font-size="12" font-weight="bold" fill="#0f766e">Usar para crear</text>
+            </g>
+        </svg>
+
+        <!-- ENCABEZADO -->
+        <header class="bg-gradient-to-r from-teal-700 to-teal-600 p-8 text-white text-center shadow-md relative z-10">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Error de exportación desde Multiterm Extract</h1>
+            <p class="text-teal-100 text-lg">Análisis del conflicto de idioma y guía de solución</p>
+        </header>
+
+        <div class="p-6 md:p-10 space-y-12 bg-white relative z-10">
+
+            <!-- PARTE 1: EL ESCENARIO -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center border-b pb-2">
+                    <i data-lucide="monitor" class="w-8 h-8 mr-3 text-teal-600"></i>
+                    1. El Origen del Conflicto
+                </h2>
+                
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 relative">
+                    <!-- Extract -->
+                    <div class="flex-1 bg-slate-50 p-6 rounded-lg border-2 border-dashed border-slate-300 text-center relative w-full hover:bg-slate-100 transition">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-slate-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Emisor</div>
+                        <i data-lucide="upload-cloud" class="w-16 h-16 mx-auto text-teal-600 mb-4"></i>
+                        <h3 class="text-xl font-bold text-slate-800">Multiterm Extract</h3>
+                        <p class="text-sm text-slate-600 mt-2 font-medium">Versión antigua / rígida</p>
+                        <div class="mt-3 bg-white p-2 rounded border border-slate-200 text-xs text-slate-500">
+                            Espera estructura interna <br><span class="text-teal-700 font-bold">SIEMPRE EN INGLÉS</span>
+                        </div>
+                    </div>
+
+                    <!-- Flecha acción -->
+                    <div class="flex flex-col items-center justify-center text-slate-400 font-bold text-sm">
+                        <span>INTENTA EXPORTAR</span>
+                        <i data-lucide="arrow-right" class="w-10 h-10 text-teal-500 my-2 hidden md:block"></i>
+                        <i data-lucide="arrow-down" class="w-10 h-10 text-teal-500 my-2 block md:hidden"></i>
+                    </div>
+
+                    <!-- Desktop -->
+                    <div class="flex-1 bg-orange-50 p-6 rounded-lg border-2 border-orange-200 text-center relative w-full hover:bg-orange-100 transition">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Receptor</div>
+                        <i data-lucide="database" class="w-16 h-16 mx-auto text-orange-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-slate-800">Multiterm Desktop</h3>
+                        <p class="text-sm text-slate-600 mt-2 font-medium">Creada con interfaz Español</p>
+                        <div class="mt-3 bg-white p-2 rounded border border-orange-200 text-xs text-slate-500">
+                            Guarda estructura interna <br><span class="text-orange-700 font-bold">EN ESPAÑOL</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PARTE 2: EL PROBLEMA TÉCNICO -->
+            <section class="bg-slate-800 rounded-xl p-8 shadow-inner relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                    <i data-lucide="file-code" class="w-48 h-48 text-white"></i>
+                </div>
+                
+                <h2 class="text-white text-xl font-bold mb-6 flex items-center relative z-10">
+                    <i data-lucide="search" class="w-6 h-6 mr-3 text-yellow-400"></i>
+                    2. El Choque en la Definición (.XDT)
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                    <!-- Encuentra (Español) -->
+                    <div class="bg-slate-900 p-5 rounded border-l-4 border-red-500 shadow-lg relative">
+                        <div class="absolute top-1/2 -left-4 bg-red-600 rounded-full p-1.5 text-white transform -translate-y-1/2 shadow-md border-2 border-slate-800">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-400 text-xs uppercase tracking-wider mb-3 font-bold">Lo que encuentra (Español):</p>
+                        <div class="code-box text-red-400 text-sm leading-relaxed">
+                            &lt;Nivel de entrada&gt;<br>
+                            &lt;Nivel de idioma&gt;<br>
+                            &lt;Nivel de término&gt;
+                        </div>
+                    </div>
+
+                    <!-- Busca (Inglés) -->
+                    <div class="bg-slate-900 p-5 rounded border-l-4 border-green-500 shadow-lg">
+                        <p class="text-slate-400 text-xs uppercase tracking-wider mb-3 font-bold">Lo que Extract espera (Inglés):</p>
+                        <div class="code-box text-green-400 text-sm leading-relaxed">
+                            &lt;Entry level&gt;<br>
+                            &lt;Index level&gt;<br>
+                            &lt;Term level&gt;
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-center relative z-10">
+                    <div class="bg-white border-l-4 border-red-600 shadow-2xl rounded-r w-full max-w-lg p-4 flex items-center space-x-4">
+                        <div class="bg-red-100 p-3 rounded-full">
+                            <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Error Fatal</h4>
+                            <p class="code-box text-red-600 text-sm font-bold">Error retrieving termbase definition.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PARTE 3: SOLUCIÓN PASO 1 -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center border-b pb-2">
+                    <i data-lucide="wrench" class="w-8 h-8 mr-3 text-teal-600"></i>
+                    3. Solución Paso 1: Cambiar la denominación traducida de niveles (en el archivo .XDT)
+                </h2>
+
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1 bg-white p-5 rounded-lg shadow-sm border border-slate-200 relative group hover:border-teal-300 transition">
+                        <div class="absolute -top-3 -left-3 w-8 h-8 bg-slate-700 text-white rounded-full flex items-center justify-center font-bold shadow">1</div>
+                        <p class="text-base font-bold text-slate-700 mb-2">Guardar Definición</p>
+                        <p class="text-sm text-slate-500">En Multiterm Desktop, guarda la definición de tu base actual como archivo <strong>.XDT</strong>.</p>
+                    </div>
+
+                    <div class="flex-1 bg-white p-5 rounded-lg shadow-sm border border-slate-200 relative group hover:border-teal-300 transition">
+                        <div class="absolute -top-3 -left-3 w-8 h-8 bg-slate-700 text-white rounded-full flex items-center justify-center font-bold shadow">2</div>
+                        <p class="text-base font-bold text-slate-700 mb-2">Editar con Notepad++</p>
+                        <p class="text-sm text-slate-500">Abre el .XDT y busca las etiquetas problemáticas (Nivel de entrada...).</p>
+                    </div>
+
+                    <!-- ORIGEN DE LA FLECHA (ID: source-step) -->
+                    <div id="source-step" class="flex-1 bg-blue-50 p-5 rounded-lg shadow-sm border border-blue-200 relative border-b-4 border-b-blue-300">
+                        <div class="absolute -top-3 -left-3 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow">3</div>
+                        <p class="text-base font-bold text-blue-800 mb-2">Traducir Etiquetas</p>
+                        <div class="code-box text-xs text-blue-900 bg-white p-3 rounded border border-blue-100 shadow-inner">
+                            Cambiar a:<br>
+                            <strong>Entry level</strong><br><strong>Index level</strong><br><strong>Term level</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PARTE 4: SOLUCIÓN PASO 2 -->
+            <section class="bg-slate-50 rounded-xl p-8 border border-slate-200 relative">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                    <i data-lucide="refresh-cw" class="w-8 h-8 mr-3 text-teal-600"></i>
+                    4. Solución Paso 2: Reconstrucción y Migración
+                </h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">
+                    Con la denominación de nivel corregida (XDT), ahora debemos mudar los datos de la "casa defectuosa" a una nueva "casa compatible".
+                </p>
+
+                <!-- Diagrama de Migración -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8 relative">
+                    
+                    <!-- Base Antigua -->
+                    <div class="w-full md:w-1/3 text-center group z-20 bg-slate-50">
+                        <div class="bg-white p-6 rounded-xl border-2 border-orange-200 shadow-sm mx-auto w-32 h-32 flex flex-col items-center justify-center mb-4 group-hover:border-orange-400 transition">
+                            <i data-lucide="database" class="w-12 h-12 text-orange-500 mb-2"></i>
+                            <span class="text-xs font-bold text-orange-700 uppercase">Base Antigua</span>
+                        </div>
+                        <div class="text-sm text-slate-600 mb-2">Estructura en Español</div>
+                        <div class="inline-block px-4 py-1.5 bg-orange-100 text-orange-700 rounded-full text-xs font-bold border border-orange-200">
+                            1. EXPORTAR DATOS
+                        </div>
+                    </div>
+
+                    <!-- Flecha flujo + XML -->
+                    <div class="flex-1 flex flex-col items-center justify-center px-4 relative z-10 w-full">
+                        <div class="h-1 w-full bg-slate-300 absolute top-1/2 transform -translate-y-1/2 hidden md:block"></div>
+                        <i data-lucide="arrow-down" class="block md:hidden text-slate-400 mb-4 h-8 w-8"></i>
+                        <div class="bg-white p-4 rounded-lg shadow-md border border-slate-300 relative z-20 flex flex-col items-center min-w-[120px]">
+                            <i data-lucide="file-json" class="w-8 h-8 text-slate-500 mb-1"></i>
+                            <span class="text-xs font-mono font-bold text-slate-700">Archivo .XML</span>
+                            <span class="text-[10px] text-slate-400">(Términos)</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hidden md:block w-8 h-8"></i>
+                    </div>
+
+                    <!-- Base Nueva (DESTINO DE LA FLECHA - ID: target-step) -->
+                    <div id="target-step" class="w-full md:w-1/3 text-center group z-20 bg-slate-50 pt-2 relative">
+                        <!-- Punto de anclaje para la flecha -->
+                        <div id="target-anchor" class="absolute top-0 left-1/2 transform -translate-x-1/2 w-2 h-2"></div>
+
+                        <div class="bg-teal-50 p-6 rounded-xl border-2 border-teal-500 shadow-md mx-auto w-32 h-32 flex flex-col items-center justify-center mb-4 relative group-hover:bg-teal-100 transition">
+                            <i data-lucide="database" class="w-12 h-12 text-teal-700 mb-2"></i>
+                            <span class="text-xs font-bold text-teal-800 uppercase">Base Nueva</span>
+                            <!-- Badge XDT -->
+                            <div class="absolute -top-3 -right-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-white">
+                                + Usar XDT Inglés
+                            </div>
+                        </div>
+                        <div class="text-sm text-slate-600 mb-2 px-2 leading-tight">Crear nueva base a partir del XDT modificado</div>
+                        <div class="inline-block px-4 py-1.5 bg-teal-100 text-teal-800 rounded-full text-xs font-bold border border-teal-200">
+                            2. IMPORTAR DATOS
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 bg-green-50 border-l-4 border-green-500 p-5 flex items-start md:items-center gap-4 rounded-r-lg relative z-20">
+                    <div class="bg-green-100 p-2 rounded-full flex-shrink-0">
+                        <i data-lucide="check" class="text-green-700 w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-green-800">Problema Resuelto</h4>
+                        <p class="text-sm text-green-700 mt-1">
+                            La nueva base de datos ya tiene los "cimientos" en inglés (compatible con Extract) pero contiene todos tus términos originales. Puedes borrar la base antigua.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="bg-slate-800 p-6 text-center border-t border-slate-700 relative z-20">
+            <p class="text-slate-400 text-sm mb-1">Guía didáctica para la gestión de terminología</p>
+            <p class="text-slate-300 text-sm font-medium">Elaborado por: Jesús Torres del Rey</p>
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Lógica para dibujar la flecha conectora
+        function drawArrow() {
+            const container = document.getElementById('main-container');
+            const svg = document.getElementById('svg-layer');
+            const source = document.getElementById('source-step');
+            const target = document.getElementById('target-anchor'); // Usamos el anclaje invisible superior
+            const path = document.getElementById('connection-line');
+            const labelGroup = document.getElementById('arrow-label');
+            const labelRect = labelGroup.querySelector('rect');
+            const labelText = labelGroup.querySelector('text');
+
+            if (!container || !source || !target || !path) return;
+
+            // Coordenadas relativas al contenedor principal
+            const containerRect = container.getBoundingClientRect();
+            const sourceRect = source.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+
+            // Puntos de inicio y fin
+            const startX = (sourceRect.left + sourceRect.width / 2) - containerRect.left;
+            const startY = (sourceRect.bottom) - containerRect.top; // Salir desde abajo
+            
+            const endX = (targetRect.left + targetRect.width / 2) - containerRect.left;
+            const endY = (targetRect.top) - containerRect.top; // Llegar por arriba
+
+            // Puntos de control para la curva Bezier
+            // Hacemos que la curva salga hacia abajo y entre desde arriba
+            const controlY1 = startY + 80;
+            const controlY2 = endY - 80;
+
+            // Definir el path
+            const d = `M ${startX} ${startY} C ${startX} ${controlY1}, ${endX} ${controlY2}, ${endX} ${endY}`;
+            path.setAttribute('d', d);
+
+            // Posicionar la etiqueta en el medio de la curva (aprox)
+            // Simplificación: punto medio geométrico ajustado
+            const midX = (startX + endX) / 2;
+            const midY = (startY + endY) / 2;
+            
+            labelGroup.style.display = 'block';
+            labelGroup.setAttribute('transform', `translate(${midX}, ${midY})`);
+        }
+
+        // Dibujar al cargar y al redimensionar
+        window.addEventListener('load', drawArrow);
+        window.addEventListener('resize', drawArrow);
+        // Timeout extra por si carga fuentes/estilos tarde
+        setTimeout(drawArrow, 500);
+        setTimeout(drawArrow, 2000);
+    </script>
+</body>
+</html>
