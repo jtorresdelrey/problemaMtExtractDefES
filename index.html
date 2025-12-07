@@ -47,7 +47,7 @@
             <section>
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center border-b pb-2">
                     <i data-lucide="monitor" class="w-8 h-8 mr-3 text-teal-600"></i>
-                    1. El Origen del Conflicto
+                    1. El origen del conflicto
                 </h2>
                 
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6 relative">
@@ -90,7 +90,7 @@
                 
                 <h2 class="text-white text-xl font-bold mb-6 flex items-center relative z-10">
                     <i data-lucide="search" class="w-6 h-6 mr-3 text-yellow-400"></i>
-                    2. El Choque en la Definición (.XDT)
+                    2. El conflicto en la definición (.XDT)
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
@@ -219,9 +219,10 @@
                                 <i data-lucide="arrow-right" class="text-slate-400 w-8 h-8 -ml-6"></i>
                                 <i data-lucide="arrow-right" class="text-slate-400 w-8 h-8 -mr-6"></i>
                             </div>
-                            <!-- Flechas nivel XML -->
+                            <!-- Flechas nivel XML (Diagonal para indicar destino hacia arriba/derecha) -->
                             <div class="flex justify-end items-center w-full relative top-2">
-                                <i data-lucide="arrow-right" class="text-slate-400 w-8 h-8 -mr-6 border-dashed"></i>
+                                <!-- Flecha diagonal arriba-derecha -->
+                                <i data-lucide="arrow-up-right" class="text-slate-400 w-8 h-8 -mr-6"></i>
                             </div>
                         </div>
 
@@ -242,8 +243,8 @@
                         </div>
                         <div class="text-sm text-slate-600 mb-auto px-2 leading-tight">Crear nueva base a partir del XDT modificado</div>
                         <div class="mt-4 inline-block px-3 py-2 bg-teal-100 text-teal-800 rounded text-xs font-bold border border-teal-200 leading-tight">
-                            2. IMPORTAR DEFINICIÓN<br>
-                            <span class="font-normal text-teal-700">(y datos, si es necesario)</span>
+                            2. USAR DEFINICIÓN EXPORTADA<br>
+                            <span class="font-normal text-teal-700">(e importar datos, si es necesario)</span>
                         </div>
                     </div>
 
@@ -254,7 +255,7 @@
                         <i data-lucide="check" class="text-green-700 w-6 h-6"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-green-800">Problema Resuelto (a nivel de base de datos)</h4>
+                        <h4 class="font-bold text-green-800">Problema resuelto (a nivel de base de datos)</h4>
                         <p class="text-sm text-green-700 mt-1">
                             La nueva base de datos ya tiene los "cimientos" en inglés (compatible con Extract) y contendría también tus términos originales (si los hubiera).
                         </p>
@@ -266,7 +267,7 @@
             <section class="bg-blue-50 rounded-xl p-8 border border-blue-200">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
                     <i data-lucide="upload-cloud" class="w-8 h-8 mr-3 text-teal-600"></i>
-                    5. Resultado Final: Exportación Exitosa
+                    5. Resultado final: exportación exitosa
                 </h2>
                 
                 <div class="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -302,8 +303,8 @@
         </div>
 
         <footer class="bg-slate-800 p-6 text-center border-t border-slate-700 relative z-20">
-            <p class="text-slate-400 text-sm mb-1">Guía didáctica para la gestión de terminología</p>
-            <p class="text-slate-300 text-sm font-medium">Elaborado por: Jesús Torres del Rey</p>
+            <p class="text-slate-400 text-sm mb-1">Guía didáctica de gestión de terminología: extracción a Multiterm Desktop (español) con Multiterm Extract</p>
+            <p class="text-slate-300 text-sm font-medium">Elaborada por: Jesús Torres del Rey</p>
         </footer>
     </div>
 
